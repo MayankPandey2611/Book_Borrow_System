@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home | Library System{% endblock %}
+
+{% block content %}
+<div class="text-center my-5">
+    <h1 class="mb-4">Welcome to Modern Library System</h1>
+
+
+
+
+</div>
+
+<div class="container mt-4">
+    <div class="mb-5">
+        <h3 class="mb-4 text-light">📚 Explore Books</h3>
+     
+
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+
+            {% for book in books %}
+            <div class="col">
+                <div class="card h-100 shadow-lg custom-card">
+                    {% if book.image %}
+                        <img src="{{ book.image.url }}" class="card-img-top book-img" alt="{{ book.title }}">
+                    {% else %}
+                        <img src="{% static 'images/ramayan.jpg' %}" class="card-img-top book-img" alt="No image available">
+                    {% endif %}
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h5 class="card-title text-light">{{ book.title }}</h5>
+                        <a href="{% url 'borrow_book' book.id %}" 
+                           class="btn btn-glow mt-auto" style="text-decoration: none;">Issue Book</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+<div class="container my-5">
+    <div class="card shadow-lg p-4 custom-card">
+        <h2 class="text-light mb-4">📖 Suggest Books</h2>
+        
+        <form method="post" action="{% url 'mail' %}">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="name" class="form-label text-light">Name</label>
+                <input type="text" class="form-control bg-dark text-light border-secondary" 
+                       id="name" name="name" placeholder="Enter Your Name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label text-light">Email</label>
+                <input type="email" class="form-control bg-dark text-light border-secondary" 
+                       id="email" name="email" placeholder="Enter Your Email" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="contact" class="form-label text-light">Contact</label>
+                <input type="number" class="form-control bg-dark text-light border-secondary" 
+                       id="contact" name="contact" placeholder="Enter Your Mobile Number" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="msg" class="form-label text-light">Message</label>
+                <textarea class="form-control bg-dark text-light border-secondary" 
+                          id="msg" name="msg" rows="4" placeholder="Suggest Books" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-glow">Send Mail</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block title %}Student Registration{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: url('https://www.pixel-studios.com/blog/wp-content/uploads/2018/12/012.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+    .auth-container {
+        background-color: rgba(0, 0, 0, 0.75);
+        padding: 40px;
+        border-radius: 4px;
+        color: #fff;
+        max-width: 400px;
+        margin: 80px auto;
+        box-shadow: 0 0 15px rgba(0,0,0,0.7);   
+    }
+    .auth-container h3 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: 500;
+        letter-spacing: 1px;
+    }
+    .auth-container label {
+        font-weight: 300;
+        font-size: 0.9rem;
+    }
+    .auth-container input {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #aaa;
+        border-radius: 0;
+        color: #fff;
+        padding-left: 0;
+    }
+    .auth-container input:focus {
+        box-shadow: none;
+        border-color: #00b894;
+        background: transparent;
+    }
+    .auth-container .btn-register {
+        width: 100%;
+        background: transparent;
+        border: 1px solid #00b894;
+        color: #00b894;
+        transition: 0.3s;
+    }
+    .auth-container .btn-register:hover {
+        background: #00b894;
+        color: #fff;
+    }
+    .auth-container .login-link {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 0.9rem;
+    }
+    .auth-container .login-link a {
+        color: #00b894;
+        text-decoration: none;
+    }
+    .auth-container .login-link a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="auth-container">
+    <h3>Student Registration</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label>Name:</label>
+            <input type="text" name="username" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Email:</label>
+            <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Password:</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <div class="mb-4">
+            <label>Confirm Password:</label>
+            <input type="password" name="confirm_password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-register">Sign Up</button>
+    </form>
+    <div class="login-link">
+        Already have an account? <a href="{% url 'student_login' %}">Sign In</a>
+    </div>
+    {% if error %}
+    <div class="alert alert-danger mt-2">{{ error }}</div>
+    {% endif %}
+</div>
+{% endblock %}

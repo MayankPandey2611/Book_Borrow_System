@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}Student Login{% endblock %}
+
+{% block content %}
+<style>
+    .auth-container {
+        background-color: rgba(0,0,0,0.75);
+        padding: 40px;
+        border-radius: 4px;
+        color: #fff;
+        max-width: 400px;
+        margin: 80px auto;
+        box-shadow: 0 0 15px rgba(0,0,0,0.7);
+    }
+    .auth-container h3 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: 500;
+        letter-spacing: 1px;
+    }
+    .auth-container label {
+        font-weight: 300;
+        font-size: 0.9rem;
+    }
+    .auth-container input {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #aaa;
+        border-radius: 0;
+        color: #fff;
+        padding-left: 0;
+    }
+    .auth-container input:focus {
+        box-shadow: none;
+        border-color: #00b894;
+        background: transparent;
+    }
+    .auth-container .btn-login {
+        width: 100%;
+        background: transparent;
+        border: 1px solid #00b894;
+        color: #00b894;
+        transition: 0.3s;
+    }
+    .auth-container .btn-login:hover {
+        background: #00b894;
+        color: #fff;
+    }
+    .auth-container .register-link {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 0.9rem;
+    }
+    .auth-container .register-link a {
+        color: #00b894;
+        text-decoration: none;
+    }
+    .auth-container .register-link a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="auth-container">
+    <h3>Student Login</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label>Username</label>
+            <input type="text" name="username" class="form-control" required>
+        </div>
+        <div class="mb-4">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-login">Sign In</button>
+    </form>
+    <div class="register-link">
+        Don't have an account? <a href="{% url 'student_register' %}">Register</a>
+    </div>
+</div>
+{% endblock %}

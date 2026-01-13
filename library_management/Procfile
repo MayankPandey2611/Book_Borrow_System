@@ -1,4 +1,5 @@
-web: gunicorn library_management.wsgi:application
+web: gunicorn library_management.library_management.wsgi:application
+
 
 
 

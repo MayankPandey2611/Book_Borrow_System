@@ -20,12 +20,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-mbw#43%v3w9=317r2pre))o&8hdfok)y8kixt!@r9jx4q=mgp-'
+
+SECRET_KEY = os.environ.get("django-insecure-mbw#43%v3w9=317r2pre))o&8hdfok)y8kixt!@r9jx4q=mgp-")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
 
 
 # Application definition
@@ -41,8 +43,10 @@ INSTALLED_APPS = [
 ]
 AUTH_USER_MODEL = 'library.User'
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -50,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'library_management.urls'
 
@@ -117,8 +122,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -132,6 +139,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
 EMAIL_HOST = "smtp.gmail.com" 
 EMAIL_PORT = 587 
-EMAIL_HOST_USER="kitupnd@gmail.com" 
-EMAIL_HOST_PASSWORD="anoxjqnmanameink"    
+
+EMAIL_HOST_USER = os.environ.get("kitupnd@gmail.com")
+EMAIL_HOST_PASSWORD = os.environ.get("anoxjqnmanameink")
+
 EMAIL_USE_TLS=True 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+

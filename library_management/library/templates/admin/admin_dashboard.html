@@ -26,8 +26,8 @@
                     <td>{{ book.isbn }}</td>
                     <td>{{ book.status|yesno:"Available,Borrowed" }}</td>
                     <td>
-                        <a href="{% url 'update_book' book.id %}" class="btn btn-glow-warning btn-sm" style="text-decoration: none;">Edit</a>
-                        <a href="{% url 'delete_book' book.id %}" class="btn btn-glow-danger btn-sm" style="text-decoration: none;">Delete</a>
+                        <a href="{% url 'update_book' book.id %}" class="btn btn-glow-warning btn-sm" style="text-decoration: none; color: yellow; border: 1px solid white;">Edit</a>
+                        <a href="{% url 'delete_book' book.id %}" class="btn btn-glow-danger btn-sm" style="text-decoration: none; color: red; border: 1px solid white;">Delete</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -54,7 +54,7 @@
                     <td>{{ student.email }}</td>
                     <td>
                         <a href="{% url 'delete_student' student.id %}" 
-                           class="btn btn-glow-danger btn-sm" style="text-decoration: none;">Delete</a>
+                           class="btn btn-glow-danger btn-sm" style="text-decoration: none; color: red; border: 1px solid white;">Delete</a>
                     </td>
                 </tr>
                 {% empty %}

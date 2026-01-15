@@ -79,7 +79,7 @@
                         <td>{{ record.book.title }}</td>
                         <td>{{ record.borrow_date }}</td>
                         <td>
-                            <a href="{% url 'return_book' record.id %}" class="btn btn-glow-danger btn-sm" style="text-decoration: none;">Return</a>
+                            <a href="{% url 'return_book' record.id %}" class="btn btn-glow-danger btn-sm" style="text-decoration: none; color: red; border: 1px solid white;">Return</a>
                         </td>
                     </tr>
                     {% empty %}

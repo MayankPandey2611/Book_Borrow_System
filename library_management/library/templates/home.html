@@ -22,7 +22,10 @@
             <div class="col">
                 <div class="card h-100 shadow-lg custom-card">
                     {% if book.image %}
-                        <img src="{{ book.image.url }}" class="card-img-top book-img" alt="{{ book.title }}">
+                        <!-- <img src="{{ book.image.url }}" class="card-img-top book-img" alt="{{ book.title }}"> -->
+                         {% load static %}
+<img src="{% static 'images/' %}{{ book.image }}">
+
                     {% else %}
                         <img src="{% static 'images/ramayan.jpg' %}" class="card-img-top book-img" alt="No image available">
                     {% endif %}
